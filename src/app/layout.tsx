@@ -2,6 +2,7 @@ import "./globals.css";
 
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
+import Provider from "@/config/provider";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${font.className} bg-BACKGROUND size-[100vh]`}>{children}</body>
+      <body className={`${font.className} bg-BACKGROUND size-[100vh]`}>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }
