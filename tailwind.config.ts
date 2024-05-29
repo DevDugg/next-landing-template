@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import { colors } from "./src/config/colors";
+import { ui } from "./src/config/ui";
 
 const config = {
   darkMode: ["class"],
@@ -8,9 +9,10 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
+      padding: {
+        "2xl": ui.container.desktopPadding,
+        lg: ui.container.tabletPadding,
+        md: ui.container.mobilePadding,
       },
     },
     extend: {
