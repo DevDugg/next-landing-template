@@ -9,13 +9,13 @@ This is a template for building landing pages using Next.js. It provides a start
 - Easy customization with reusable components and styles.
 - SEO-friendly structure and meta tags for better search engine visibility.
 - Optimized performance with code splitting and lazy loading.
-- Integration with popular libraries and tools like Tailwind CSS and React Icons.
+- Integration with popular libraries and tools like Tailwind CSS, Framer Motion.
 
 ## Getting Started
 
 To get started with this template, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/next-landing-template.git`
+1. Clone the repository: `git clone https://github.com/DevDugg/next-landing-template.git`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm run dev`
 4. Open your browser and visit `http://localhost:3000`
