@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { PropsWithChildren } from "react";
 import { defaultTransition } from "@/config/transitions";
+import { general } from "@/config/general";
 import { interactions } from "@/config/interactions";
 import { motion } from "framer-motion";
 
@@ -20,7 +21,7 @@ const Loader = ({ children }: PropsWithChildren) => {
         style={interactions.useEntryAnimation ? {} : { display: "none" }}
       >
         <Image alt="App Logo" src="/images/logo.svg" width={80} height={80} loading="eager" priority />
-        <span className="text-[60px]">TEMPLATE</span>
+        <span className="text-[60px]">{general.appName}</span>
       </motion.div>
       {children}
     </>
