@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import { Inter } from "next/font/google";
+import Loader from "@/components/sections/loader";
 import type { Metadata } from "next";
 import Provider from "@/config/provider";
 
@@ -18,8 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${font.className} bg-BACKGROUND w-screen h-screen`}>
-        <Provider>{children}</Provider>
+      <body className={`${font.className} bg-BACKGROUND text-PRIMARY w-screen h-screen`}>
+        <Provider>
+          <Loader />
+          {children}
+        </Provider>
       </body>
     </html>
   );
