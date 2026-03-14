@@ -1,13 +1,12 @@
 "use client";
 
-import { PropsWithChildren, useEffect } from "react";
-
+import { type PropsWithChildren, useEffect } from "react";
 import validateConfig from "@/lib/validate-config";
 
-const CheckConfig = ({ children }: PropsWithChildren) => {
+export default function CheckConfig({ children }: PropsWithChildren) {
   useEffect(() => {
     validateConfig();
   }, []);
-  return children;
-};
-export default CheckConfig;
+
+  return <>{children}</>;
+}

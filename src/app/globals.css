@@ -1,3 +1,139 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/*
+ * Design tokens — single source of truth for the entire template.
+ * Change these values to re-skin the whole site instantly.
+ *
+ * Light mode: defined in @theme (Tailwind's default layer).
+ * Dark mode: overridden via .dark class on <html>.
+ */
+@theme {
+  /* Brand */
+  --color-primary: #2563eb;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #7c3aed;
+  --color-secondary-foreground: #ffffff;
+
+  /* Surfaces */
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #737373;
+
+  /* Cards */
+  --color-card: #ffffff;
+  --color-card-foreground: #0a0a0a;
+
+  /* Borders */
+  --color-border: #e5e5e5;
+
+  /* Accent */
+  --color-accent: #f0f4ff;
+  --color-accent-foreground: #1e3a5f;
+
+  /* Destructive */
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+
+  /* Ring */
+  --color-ring: #2563eb;
+
+  /* Loader */
+  --color-loader: #0a0a0a;
+
+  /* Radius */
+  --radius-lg: 0.75rem;
+  --radius-md: 0.5rem;
+  --radius-sm: 0.25rem;
+
+  /* Fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #fafafa;
+  --color-muted: #1a1a1a;
+  --color-muted-foreground: #a3a3a3;
+  --color-card: #141414;
+  --color-card-foreground: #fafafa;
+  --color-border: #262626;
+  --color-accent: #1a1a2e;
+  --color-accent-foreground: #c4d4f0;
+  --color-ring: #3b82f6;
+  --color-loader: #fafafa;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* Base styles */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  /* Focus-visible for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  /* Skip link */
+  .skip-to-content {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 9999;
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 0 0 var(--radius-md) 0;
+  }
+
+  .skip-to-content:focus {
+    left: 0;
+  }
+}
+
+/* Reduced motion: disable all animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

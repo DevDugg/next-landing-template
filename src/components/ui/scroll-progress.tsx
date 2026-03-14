@@ -1,38 +1,21 @@
 "use client";
 
+import { type PropsWithChildren } from "react";
 import { motion, useScroll } from "framer-motion";
-
-import { ReactNode } from "react";
-import { colors } from "@/config/colors";
 import { interactions } from "@/config/interactions";
 
-interface IProps {
-  children: ReactNode;
-}
-
-const ScrollProgress = ({ children }: IProps) => {
+export default function ScrollProgress({ children }: PropsWithChildren) {
   const { scrollYProgress } = useScroll();
+
   return (
     <>
-      <motion.div
-        className="progress-bar"
-        style={{
-          display: interactions.useProgressBar ? "block" : "none",
-          scaleX: scrollYProgress,
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          background: colors["PRIMARY"],
-          transformOrigin: "0%",
-          zIndex: 100,
-          height: 3,
-          mixBlendMode: "exclusion",
-        }}
-      ></motion.div>
+      {interactions.useProgressBar && (
+        <motion.div
+          className="fixed top-0 right-0 left-0 z-[100] h-[3px] origin-left bg-primary"
+          style={{ scaleX: scrollYProgress, mixBlendMode: "difference" }}
+        />
+      )}
       {children}
     </>
   );
-};
-
-export default ScrollProgress;
+}

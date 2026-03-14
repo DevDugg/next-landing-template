@@ -1,21 +1,20 @@
 "use client";
 
-import CheckConfig from "./check-config";
+import { type PropsWithChildren } from "react";
 import { MotionConfig } from "framer-motion";
-import { PropsWithChildren } from "react";
+import { ThemeProvider } from "next-themes";
 import ScrollProgress from "@/components/ui/scroll-progress";
 import SmoothScroll from "@/components/animations/smooth-scroll";
 import { defaultTransition } from "./transitions";
 
-const Provider = ({ children }: PropsWithChildren) => {
+export default function Provider({ children }: PropsWithChildren) {
   return (
-    <SmoothScroll>
-      <MotionConfig transition={defaultTransition}>
-        <ScrollProgress>
-          <CheckConfig>{children}</CheckConfig>
-        </ScrollProgress>
-      </MotionConfig>
-    </SmoothScroll>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <SmoothScroll>
+        <MotionConfig transition={defaultTransition} reducedMotion="user">
+          <ScrollProgress>{children}</ScrollProgress>
+        </MotionConfig>
+      </SmoothScroll>
+    </ThemeProvider>
   );
-};
-export default Provider;
+}
