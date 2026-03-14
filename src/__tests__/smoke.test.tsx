@@ -7,6 +7,7 @@ import { pricing } from "@/data/pricing";
 import { faq } from "@/data/faq";
 import { testimonials } from "@/data/testimonials";
 import { footer } from "@/data/footer";
+import { track, identify } from "@/lib/analytics";
 
 describe("Config", () => {
   it("has valid general config", () => {
@@ -40,7 +41,7 @@ describe("Data layer", () => {
     });
   });
 
-  it("pricing tiers have features", () => {
+  it("pricing tiers have features and one highlighted", () => {
     expect(pricing.tiers.length).toBeGreaterThan(0);
     pricing.tiers.forEach((tier) => {
       expect(tier.name).toBeTruthy();
@@ -74,5 +75,12 @@ describe("Data layer", () => {
       expect(col.title).toBeTruthy();
       expect(col.links.length).toBeGreaterThan(0);
     });
+  });
+});
+
+describe("Analytics", () => {
+  it("track and identify do not throw", () => {
+    expect(() => track("test_event", { key: "value" })).not.toThrow();
+    expect(() => identify("user-123", { plan: "pro" })).not.toThrow();
   });
 });

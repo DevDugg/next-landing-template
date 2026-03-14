@@ -1,15 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Container from "@/components/layout/container";
 import { logos } from "@/data/logos";
 
 export default function Logos() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section className="border-y border-border bg-muted/50 py-12">
+    <section aria-label="Trusted partners" className="border-y border-border bg-muted/50 py-12">
       <Container>
         <motion.p
-          initial={{ opacity: 0 }}
+          initial={prefersReducedMotion ? false : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="mb-8 text-center text-sm font-medium text-muted-foreground"
@@ -17,7 +19,7 @@ export default function Logos() {
           {logos.heading}
         </motion.p>
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={prefersReducedMotion ? false : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}

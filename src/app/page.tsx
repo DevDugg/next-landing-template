@@ -15,7 +15,7 @@ export default function Home() {
     <>
       {renderSchemaTags()}
       <Navbar />
-      <main>
+      <main id="main-content">
         <Hero />
         <Logos />
         <Features />

@@ -1,25 +1,28 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Container from "@/components/layout/container";
 import { hero } from "@/data/hero";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: 0.8 + i * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-  }),
-};
-
 export default function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+
+  const fadeUp = {
+    hidden: prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: prefersReducedMotion
+        ? { duration: 0 }
+        : { delay: 0.8 + i * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+    }),
+  };
+
   return (
-    <section className="relative flex min-h-[90vh] items-center pt-16">
-      {/* Subtle gradient background */}
+    <section aria-labelledby="hero-title" className="relative flex min-h-[90vh] items-center pt-16">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-accent/50 to-background" />
 
       <Container className="relative z-10">
@@ -31,6 +34,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
+            id="hero-title"
             custom={1}
             initial="hidden"
             animate="visible"
@@ -60,7 +64,7 @@ export default function Hero() {
             <Button asChild size="lg">
               <a href={hero.primaryCta.href}>
                 {hero.primaryCta.label}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">

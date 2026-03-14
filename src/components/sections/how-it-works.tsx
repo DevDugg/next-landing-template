@@ -1,19 +1,21 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import Container from "@/components/layout/container";
 import { howItWorks } from "@/data/how-it-works";
 
 export default function HowItWorks() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section id="how-it-works" className="bg-muted/30 py-24">
+    <section id="how-it-works" aria-labelledby="how-it-works-title" className="bg-muted/30 py-24">
       <Container>
         <div className="mx-auto mb-16 max-w-2xl text-center">
           <Badge variant="secondary" className="mb-4">
             {howItWorks.badge}
           </Badge>
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <h2 id="how-it-works-title" className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             {howItWorks.title}
           </h2>
           <p className="text-lg text-muted-foreground">{howItWorks.description}</p>
@@ -23,13 +25,16 @@ export default function HowItWorks() {
           {howItWorks.steps.map((step, i) => (
             <motion.div
               key={step.step}
-              initial={{ opacity: 0, y: 20 }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.15, duration: 0.5 }}
               className="text-center"
             >
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">
+              <div
+                className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground"
+                aria-hidden="true"
+              >
                 {step.step}
               </div>
               <h3 className="mb-2 text-lg font-semibold text-foreground">{step.title}</h3>

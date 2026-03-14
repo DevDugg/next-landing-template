@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
@@ -12,21 +12,23 @@ import Container from "@/components/layout/container";
 import { faq } from "@/data/faq";
 
 export default function FAQ() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section id="faq" className="py-24">
+    <section id="faq" aria-labelledby="faq-title" className="py-24">
       <Container>
         <div className="mx-auto mb-16 max-w-2xl text-center">
           <Badge variant="secondary" className="mb-4">
             {faq.badge}
           </Badge>
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <h2 id="faq-title" className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             {faq.title}
           </h2>
           <p className="text-lg text-muted-foreground">{faq.description}</p>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}

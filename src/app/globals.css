@@ -3,6 +3,9 @@
 /*
  * Design tokens — single source of truth for the entire template.
  * Change these values to re-skin the whole site instantly.
+ *
+ * Light mode: defined in @theme (Tailwind's default layer).
+ * Dark mode: overridden via .dark class on <html>.
  */
 @theme {
   /* Brand */
@@ -51,6 +54,21 @@
   --animate-accordion-up: accordion-up 0.2s ease-out;
 }
 
+/* Dark mode overrides */
+.dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #fafafa;
+  --color-muted: #1a1a1a;
+  --color-muted-foreground: #a3a3a3;
+  --color-card: #141414;
+  --color-card-foreground: #fafafa;
+  --color-border: #262626;
+  --color-accent: #1a1a2e;
+  --color-accent-foreground: #c4d4f0;
+  --color-ring: #3b82f6;
+  --color-loader: #fafafa;
+}
+
 @keyframes accordion-down {
   from {
     height: 0;
@@ -81,5 +99,41 @@
 
   * {
     border-color: var(--color-border);
+  }
+
+  /* Focus-visible for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  /* Skip link */
+  .skip-to-content {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 9999;
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 0 0 var(--radius-md) 0;
+  }
+
+  .skip-to-content:focus {
+    left: 0;
+  }
+}
+
+/* Reduced motion: disable all animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
