@@ -1,21 +1,19 @@
-type ContainerType = {
-  maxWidth: string;
-  desktopPadding: string;
-  tabletPadding: string;
-  mobilePadding: string;
-  overflowHidden: boolean;
-};
-
 export type UIType = {
-  container: ContainerType;
+  container: {
+    maxWidth: number;
+    desktopPadding: number;
+    tabletPadding: number;
+    mobilePadding: number;
+    overflowHidden: boolean;
+  };
 };
 
 export const ui: UIType = {
   container: {
-    maxWidth: 1320 + 60 * 2 + "px",
-    desktopPadding: 60 + "px",
-    tabletPadding: 32 + "px",
-    mobilePadding: 16 + "px",
+    maxWidth: 1280,
+    desktopPadding: 48,
+    tabletPadding: 32,
+    mobilePadding: 16,
     overflowHidden: true,
   },
 };

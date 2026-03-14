@@ -1,28 +1,19 @@
-//@ts-nocheck
 "use client";
 
-import { PropsWithChildren } from "react";
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { type PropsWithChildren } from "react";
+import { ReactLenis } from "lenis/react";
 
-function SmoothScroll({ children }: PropsWithChildren) {
+export default function SmoothScroll({ children }: PropsWithChildren) {
   return (
     <ReactLenis
       root
       options={{
         lerp: 0.08,
-        duration: 3,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(4, -5 * t)),
-        direction: "vertical",
-        gestureDirection: "vertical",
-        smooth: true,
-        smoothTouch: true,
-        touchMultiplier: 2,
-        infinite: false,
+        duration: 1.2,
+        syncTouch: true,
       }}
     >
       {children}
     </ReactLenis>
   );
 }
-
-export default SmoothScroll;

@@ -6,18 +6,19 @@ type GeneralType = {
   domainName: string;
   colors: {
     theme: "light" | "dark";
-    main: string;
+    themeColor: string;
   };
   creator: `@${string}`;
 };
 
 export const general: GeneralType = {
   appName: "Next Landing Template",
-  appDescription: "Next Landing Template",
-  domainName: "avium.trade",
+  appDescription:
+    "A modern, production-ready landing page template built with Next.js 15, React 19, and Tailwind CSS v4.",
+  domainName: "example.com",
   colors: {
     theme: "light",
-    main: colors.PRIMARY,
+    themeColor: colors.themeColor,
   },
   creator: "@website_dugg",
 };

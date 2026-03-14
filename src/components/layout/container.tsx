@@ -1,22 +1,27 @@
-import { PropsWithChildren } from "react";
-import clsx from "clsx";
+import { type PropsWithChildren } from "react";
+import { cn } from "@/lib/utils";
 import { ui } from "@/config/ui";
 
-interface IProps extends PropsWithChildren {
+interface ContainerProps extends PropsWithChildren {
   className?: string;
+  as?: "div" | "section" | "article";
 }
 
-const Container = ({ children, className }: IProps) => {
+export default function Container({
+  children,
+  className,
+  as: Component = "div",
+}: ContainerProps) {
   return (
-    <div
-      className={clsx(
-        `container max-width-[${ui.container.maxWidth}] max-lg:px-5 max-md:px`,
-        ui.container.overflowHidden && "overflow-hidden",
-      )}
+    <Component
+      className={cn("mx-auto w-full", ui.container.overflowHidden && "overflow-hidden", className)}
+      style={{
+        maxWidth: ui.container.maxWidth,
+        paddingLeft: ui.container.mobilePadding,
+        paddingRight: ui.container.mobilePadding,
+      }}
     >
-      {className ? <div className={className}>{children}</div> : children}
-    </div>
+      {children}
+    </Component>
   );
-};
-
-export default Container;
+}
