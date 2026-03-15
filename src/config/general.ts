@@ -1,3 +1,10 @@
+/**
+ * General app config — START HERE when customizing the template.
+ *
+ * Change appName, appDescription, and domainName to match your project.
+ * These values are used in SEO meta tags, the navbar, footer, and OG images.
+ */
+
 import { colors } from "./colors";
 
 type GeneralType = {
